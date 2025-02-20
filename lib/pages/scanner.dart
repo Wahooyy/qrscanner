@@ -113,7 +113,7 @@ class _QRScannerPageState extends State<QRScannerPage> with SingleTickerProvider
             child: Stack(
               alignment: Alignment.center,
               children: [
-                // Scanner frame
+                
                 Container(
                   width: 280,
                   height: 280,
@@ -125,7 +125,7 @@ class _QRScannerPageState extends State<QRScannerPage> with SingleTickerProvider
                     borderRadius: BorderRadius.circular(24),
                   ),
                 ),
-                // Animated scanner line
+                
                 AnimatedBuilder(
                   animation: _animation,
                   builder: (context, child) {
