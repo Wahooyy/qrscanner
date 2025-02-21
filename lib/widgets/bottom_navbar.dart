@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../pages/scanner.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -20,65 +21,92 @@ class CustomBottomNavBar extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade300.withOpacity(0.2),
-                spreadRadius: 1,
-                blurRadius: 10,
-              ),
-            ],
           ),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
-            selectedItemColor: Colors.blue.shade800,
-            unselectedItemColor: Colors.grey,
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            currentIndex: selectedIndex,
-            onTap: onItemTapped,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: FaIcon(FontAwesomeIcons.house, size: 20),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashFactory: NoSplash.splashFactory, // Removes the ripple animation
+              highlightColor: Colors.transparent, // Removes highlight effect
+            ),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.white,
+              selectedItemColor: Colors.blue,
+              unselectedItemColor: Colors.grey,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              currentIndex: selectedIndex,
+              onTap: onItemTapped,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: SvgPicture.asset(
+                      'assets/icons/Home.svg',
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(selectedIndex == 0 ? Colors.blue : Colors.grey,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: FaIcon(FontAwesomeIcons.magnifyingGlass, size: 20),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: SvgPicture.asset(
+                      'assets/icons/Search.svg',
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(selectedIndex == 1 ? Colors.blue : Colors.grey,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Icon(Icons.scanner),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: Icon(Icons.scanner),
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: FaIcon(FontAwesomeIcons.clockRotateLeft, size: 20),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: SvgPicture.asset(
+                      'assets/icons/Vector.svg',
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(selectedIndex == 3 ? Colors.blue : Colors.grey,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: FaIcon(FontAwesomeIcons.user, size: 20),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: SvgPicture.asset(
+                      'assets/icons/User.svg',
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(selectedIndex == 4 ? Colors.blue : Colors.grey,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         // White curved background for the center button
         Positioned(
-          bottom: 39,
+          bottom: 32,
           left: 0,
           right: 0,
           child: Center(
@@ -88,20 +116,13 @@ class CustomBottomNavBar extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade300.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 10,
-                  ),
-                ],
               ),
             ),
           ),
         ),
         // Center button
         Positioned(
-          bottom: 50,
+          bottom: 45,
           left: 0,
           right: 0,
           child: GestureDetector(
@@ -116,7 +137,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 width: 70,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.blue.shade800,
+                  color: Colors.blue,
                   shape: BoxShape.circle,
                   // boxShadow: [
                   //   BoxShadow(
@@ -126,11 +147,12 @@ class CustomBottomNavBar extends StatelessWidget {
                   //   ),
                   // ],
                 ),
-                child: const Center(
-                  child: FaIcon(
-                    FontAwesomeIcons.qrcode,
-                    color: Colors.white,
-                    size: 32,
+                child: Center(
+                  child: SvgPicture.asset(
+                    'assets/icons/Scanner.svg',
+                    width: 36,
+                    height: 36,
+                    color: Colors.white
                   ),
                 ),
               ),

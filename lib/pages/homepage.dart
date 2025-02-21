@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../widgets/bottom_navbar.dart';
 import 'profile.dart';
 import 'scanner.dart';
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFFAFAFD),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -85,10 +86,11 @@ class HomeContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          FaIcon(
-            FontAwesomeIcons.qrcode,
-            size: 100,
-            color: Colors.blue.shade800,
+          SvgPicture.asset(
+            'assets/icons/Scanner.svg',
+            width: 100,
+            height: 100,
+            color: Colors.black,
           ),
         ],
       ),

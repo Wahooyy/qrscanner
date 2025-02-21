@@ -5,6 +5,9 @@ class AuthService {
   static const String baseUrl = 'http://192.168.1.229/erp';
   static String? csrfToken;
   static String? sessionId;
+  static Map<String, dynamic>? _userData; // Add this to store user data
+
+  static Map<String, dynamic>? get userData => _userData;
 
   static Future<bool> initializeAuth() async {
     try {
@@ -61,7 +64,9 @@ class AuthService {
           }
         }
 
-        return json.decode(response.body);
+        final responseData = json.decode(response.body);
+        _userData = responseData['data']; // Store the user data
+        return responseData;
       } else {
         throw Exception('Server error');
       }
@@ -74,5 +79,7 @@ class AuthService {
     // Clear tokens and session
     csrfToken = null;
     sessionId = null;
+    _userData = null; // Clear user data on sign out
+
   }
 }

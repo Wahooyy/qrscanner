@@ -9,6 +9,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userData = AuthService.userData;
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -24,7 +25,7 @@ class ProfilePage extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Profile Name',
+            userData?['username'] ?? 'Username',
             style: GoogleFonts.epilogue(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -32,33 +33,12 @@ class ProfilePage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'user@example.com',
+            userData?['email'] ?? 'Email',
             style: GoogleFonts.epilogue(
               fontSize: 16,
               color: Colors.grey,
             ),
           ),
-          // const SizedBox(height: 32),
-          // ListTile(
-          //   leading: const FaIcon(FontAwesomeIcons.gear),
-          //   title: Text(
-          //     'Settings',
-          //     style: GoogleFonts.epilogue(),
-          //   ),
-          //   onTap: () {
-          //     // Handle settings tap
-          //   },
-          // ),
-          // ListTile(
-          //   leading: const FaIcon(FontAwesomeIcons.circleInfo),
-          //   title: Text(
-          //     'About',
-          //     style: GoogleFonts.epilogue(),
-          //   ),
-          //   onTap: () {
-          //     // Handle about tap
-          //   },
-          // ),
           const Spacer(),
           SizedBox(
             width: double.infinity,

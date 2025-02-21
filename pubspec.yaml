@@ -15,6 +15,9 @@ dependencies:
   google_fonts: ^6.1.0
   font_awesome_flutter: ^10.7.0
   http: ^1.1.0
+  flutter_svg: ^2.0.10
+  lottie: ^3.3.1
+  flutter_native_splash: ^2.4.5
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +26,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/Star.svg
+    - assets/lottie/Splash-Screen-Test.json
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  fullscreen: true
+  android: true
+  ios: true
