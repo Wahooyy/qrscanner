@@ -71,11 +71,23 @@ class _QRScannerPageState extends State<QRScannerPage> with SingleTickerProvider
   }
 
   Future<void> _checkPermission() async {
-    final status = await Permission.camera.request();
-    setState(() {
-      _hasPermission = status.isGranted;
-    });
+    final status = await Permission.camera.status;
+
+      if (!status.isGranted) {
+        final newStatus = await Permission.camera.request();
+        setState(() {
+          _hasPermission = newStatus.isGranted;
+        });
+      } else {
+        setState(() {
+          _hasPermission = true;
+        });
+      }
+      if (status.isPermanentlyDenied) {
+      openAppSettings();
+      }
   }
+
 @override
   Widget build(BuildContext context) {
     return Scaffold(
