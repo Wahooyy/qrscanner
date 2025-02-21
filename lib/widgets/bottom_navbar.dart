@@ -30,7 +30,7 @@ class CustomBottomNavBar extends StatelessWidget {
             child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.white,
-              selectedItemColor: Colors.blue,
+              selectedItemColor: Colors.black,
               unselectedItemColor: Colors.grey,
               showSelectedLabels: true,
               showUnselectedLabels: true,
@@ -44,7 +44,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       'assets/icons/Home.svg',
                       width: 24,
                       height: 24,
-                      colorFilter: ColorFilter.mode(selectedIndex == 0 ? Colors.blue : Colors.grey,
+                      colorFilter: ColorFilter.mode(selectedIndex == 0 ? Colors.black : Colors.grey,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -58,7 +58,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       'assets/icons/Search.svg',
                       width: 24,
                       height: 24,
-                      colorFilter: ColorFilter.mode(selectedIndex == 1 ? Colors.blue : Colors.grey,
+                      colorFilter: ColorFilter.mode(selectedIndex == 1 ? Colors.black : Colors.grey,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -79,7 +79,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       'assets/icons/Vector.svg',
                       width: 24,
                       height: 24,
-                      colorFilter: ColorFilter.mode(selectedIndex == 3 ? Colors.blue : Colors.grey,
+                      colorFilter: ColorFilter.mode(selectedIndex == 3 ? Colors.black : Colors.grey,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -93,7 +93,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       'assets/icons/User.svg',
                       width: 24,
                       height: 24,
-                      colorFilter: ColorFilter.mode(selectedIndex == 4 ? Colors.blue : Colors.grey,
+                      colorFilter: ColorFilter.mode(selectedIndex == 4 ? Colors.black : Colors.grey,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -137,7 +137,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 width: 70,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: const Color(0xFF2563EB),
                   shape: BoxShape.circle,
                   // boxShadow: [
                   //   BoxShadow(
