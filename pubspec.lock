@@ -124,11 +124,12 @@ packages:
   figma_squircle:
     dependency: "direct main"
     description:
-      name: figma_squircle
-      sha256: "790b91a9505e90d246f6efe2fa065ff7fffe658c7b44fe9b5b20c7b0ad3818c0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.3"
+      path: "."
+      ref: HEAD
+      resolved-ref: fb3957539bab0a6850fd763fb5b0a55fe9c3d3b0
+      url: "https://github.com/Wahooyy/figma_squircle.git"
+    source: git
+    version: "0.5.5"
   flutter:
     dependency: "direct main"
     description: flutter
