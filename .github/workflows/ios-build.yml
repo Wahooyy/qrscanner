@@ -1,0 +1,30 @@
+name: Build iOS Flutter App
+
+on:
+  push:
+    branches:
+      - main  # Sesuaikan dengan branch Anda
+
+jobs:
+  build:
+    runs-on: macos-latest  # Menjalankan di macOS
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Setup CocoaPods
+        run: |
+          cd ios
+          pod install
+
+      - name: Build iOS App
+        run: flutter build ios --no-codesign
