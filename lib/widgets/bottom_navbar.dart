@@ -36,7 +36,7 @@ class CustomBottomNavBar extends StatelessWidget {
               showUnselectedLabels: true,
               currentIndex: selectedIndex,
               onTap: onItemTapped,
-              items: [
+                items: [
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: EdgeInsets.only(top: 15),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 
 import '../widgets/bottom_navbar.dart';
 import 'profile.dart';
@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFAFAFD),
+      // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -65,34 +66,133 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.all(16),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Top Cards (Today's Scan & Pending Orders)
+          Row(
+            children: [
+              Expanded(
+                child: _buildStatCard(
+                  title: "Today's Scan",
+                  value: "247",
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: _buildStatCard(
+                  title: "Pending Orders",
+                  value: "10",
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          // Recent Orders List
           Text(
-            'Ini QR Scanner ya',
+            'Recent Orders',
             style: GoogleFonts.epilogue(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
           ),
-          const SizedBox(height: 20),
-          Text(
-            'Klik tombol scan dibawah buat scan qr ya jing.',
-            style: GoogleFonts.epilogue(
-              fontSize: 16,
-              color: Colors.black87,
+          const SizedBox(height: 16),
+
+          _buildOrderCard(orderId: "SO-001", items: 10),
+          _buildOrderCard(orderId: "SO-002", items: 12),
+        ],
+      ),
+    );
+  }
+
+  // Statistic Card (White Background, Black Text, No Border, No Shadow)
+  Widget _buildStatCard({
+    required String title,
+    required String value,
+  }) {
+    return ClipSmoothRect(
+      radius: SmoothBorderRadius(
+        cornerRadius: 20,
+        cornerSmoothing: 1,
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: 20,
+            cornerSmoothing: 1,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.epilogue(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              value,
+              style: GoogleFonts.epilogue(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Order Card (White Background, No Border, No Shadow)
+  Widget _buildOrderCard({required String orderId, required int items}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: ClipSmoothRect(
+        radius: SmoothBorderRadius(
+          cornerRadius: 16,
+          cornerSmoothing: 1,
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: SmoothBorderRadius(
+              cornerRadius: 16,
+              cornerSmoothing: 1,
             ),
           ),
-          const SizedBox(height: 40),
-          SvgPicture.asset(
-            'assets/icons/Scanner.svg',
-            width: 100,
-            height: 100,
-            color: Colors.black,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                orderId,
+                style: GoogleFonts.epilogue(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              Text(
+                '$items items',
+                style: GoogleFonts.epilogue(
+                  fontSize: 14,
+                  color: Colors.black54,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

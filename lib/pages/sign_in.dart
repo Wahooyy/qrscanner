@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:figma_squircle/figma_squircle.dart';
+
 import '../services/auth_service.dart';
 import 'homepage.dart';
 
@@ -95,89 +97,96 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   InputDecoration _getInputDecoration({
-    required String hintText,
-    required String svgIconPath,
-    Widget? suffixIcon,
-  }) {
-    return InputDecoration(
-      hintText: hintText,
-      hintStyle: GoogleFonts.epilogue(
-        color: const Color(0xFF868686),
-        fontWeight: FontWeight.w500,
-      ),
-      filled: true,
-      fillColor: Colors.white,
-      prefixIcon: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: SvgPicture.asset(
-          svgIconPath,
-          width: 20,
-          height: 20,
-          colorFilter: const ColorFilter.mode(
-            Color(0xFF868686),
-            BlendMode.srcIn,
-          ),
+  required String hintText,
+  required String svgIconPath,
+  Widget? suffixIcon,
+}) {
+  return InputDecoration(
+    hintText: hintText,
+    hintStyle: GoogleFonts.epilogue(
+      color: const Color(0xFF868686),
+      fontWeight: FontWeight.w500,
+    ),
+    filled: true,
+    fillColor: Colors.white,
+    prefixIcon: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: SvgPicture.asset(
+        svgIconPath,
+        width: 20,
+        height: 20,
+        colorFilter: const ColorFilter.mode(
+          Color(0xFF868686),
+          BlendMode.srcIn,
         ),
       ),
-      suffixIcon: suffixIcon,
-        
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: Color(0xFFEDF1F3), 
-          width: 1.5, 
-        ),
-      ),
+    ),
+    suffixIcon: suffixIcon,
 
-      
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: Color(0xFFEDF1F3), 
-          width: 1.5,
-        ),
+    // Apply Figma squircle effect using SmoothBorderRadius
+    border: OutlineInputBorder(
+      borderRadius: SmoothBorderRadius(
+        cornerRadius: 20,
+        cornerSmoothing: 1,
       ),
-
-      
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: Color(0xFFEDF1F3), 
-          width: 2,
-        ),
+      borderSide: const BorderSide(
+        color: Color(0xFFEDF1F3),
+        width: 1.5,
       ),
-
-      
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: Color(0xFFEDF1F3), 
-          width: 2,
-        ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: SmoothBorderRadius(
+        cornerRadius: 20,
+        cornerSmoothing: 1,
       ),
-
-      
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: Color(0xFFEDF1F3), 
-          width: 2,
-        ),
+      borderSide: const BorderSide(
+        color: Color(0xFFEDF1F3),
+        width: 1.5,
       ),
-
-      
-      errorStyle: GoogleFonts.epilogue(
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: SmoothBorderRadius(
+        cornerRadius: 20,
+        cornerSmoothing: 1,
+      ),
+      borderSide: const BorderSide(
+        color: Color(0xFF2563EB),
+        width: 2,
+      ),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: SmoothBorderRadius(
+        cornerRadius: 20,
+        cornerSmoothing: 1,
+      ),
+      borderSide: const BorderSide(
+        color: Color(0xFFE21C3D),
+        width: 2,
+      ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: SmoothBorderRadius(
+        cornerRadius: 20,
+        cornerSmoothing: 1,
+      ),
+      borderSide: const BorderSide(
+        color: Color(0xFFE21C3D),
+        width: 2,
+      ),
+    ),
+    errorStyle: GoogleFonts.epilogue(
         color: const Color(0xFFE21C3D),
         fontSize: 14,
         fontWeight: FontWeight.w500,
         height: 2,
       ),
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 1, 
-        vertical: 16, 
-      ),
-    );
-  }
+    contentPadding: const EdgeInsets.symmetric(
+      horizontal: 1,
+      vertical: 16,
+    ),
+  );
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -266,10 +275,15 @@ class _SignInPageState extends State<SignInPage> {
                     
                     Container(
                       padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
+                      decoration: ShapeDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(24),
-                        boxShadow: [
+                        shape: SmoothRectangleBorder(
+                          borderRadius: SmoothBorderRadius(
+                            cornerRadius: 30,
+                            cornerSmoothing: 1,
+                          ),
+                        ),
+                        shadows: [
                           BoxShadow(
                             color: const Color.fromARGB(133, 193, 216, 252).withOpacity(0.1),
                             blurRadius: 10,
@@ -299,7 +313,7 @@ class _SignInPageState extends State<SignInPage> {
                               },
                               onChanged: (value) {
                                 setState(() {
-                                  _formKey.currentState!.validate(); 
+                                  _formKey.currentState!.validate();
                                 });
                               },
                             ),
@@ -344,7 +358,7 @@ class _SignInPageState extends State<SignInPage> {
                               },
                               onChanged: (value) {
                                 setState(() {
-                                  _formKey.currentState!.validate(); 
+                                  _formKey.currentState!.validate();
                                 });
                               },
                             ),
@@ -355,8 +369,15 @@ class _SignInPageState extends State<SignInPage> {
                               child: ElevatedButton(
                                 onPressed: _isLoading ? null : _signIn,
                                 style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
+                                  shape: SmoothRectangleBorder(
+                                    borderRadius: SmoothBorderRadius(
+                                      cornerRadius: 20,
+                                      cornerSmoothing: 1,
+                                    ),
+                                    side: const BorderSide(
+                                      color: Color(0xFFEDF1F3), // Your original border color
+                                      width: 1.5,
+                                    ),
                                   ),
                                   backgroundColor: const Color(0xFF2563EB),
                                   elevation: 0,
@@ -372,11 +393,13 @@ class _SignInPageState extends State<SignInPage> {
                                         ),
                                       ),
                               ),
+
                             ),
                           ],
                         ),
                       ),
                     ),
+
                   ],
                 ),
               ),
