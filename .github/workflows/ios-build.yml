@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -26,6 +28,15 @@ jobs:
           cd ios
           pod deintegrate
           pod install
+
+      - name: Commit and Push Podfile Changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add ios/Podfile ios/Podfile.lock
+          git commit -m "Update Podfile and Podfile.lock"
+          git push origin main
+        continue-on-error: true  # Mencegah error jika tidak ada perubahan
 
       - name: Build iOS App
         run: flutter build ios --no-codesign
