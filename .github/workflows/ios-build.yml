@@ -24,6 +24,7 @@ jobs:
       - name: Setup CocoaPods
         run: |
           cd ios
+          pod deintegrate
           pod install
 
       - name: Build iOS App
