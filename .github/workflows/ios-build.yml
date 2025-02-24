@@ -29,7 +29,6 @@ jobs:
       - name: Build iOS App
         run: flutter build ios --no-codesign
 
-<<<<<<< HEAD
       - name: Archive iOS Build
         run: zip -r ios-build.zip build/ios/iphoneos/Runner.app      
 
@@ -38,6 +37,3 @@ jobs:
         with:
           name: ios-build
           path: ios-build.zip
-=======
-      
->>>>>>> 1827e54e5c30b5b1aa75adaaf7bcdb13afc5533b
